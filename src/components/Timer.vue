@@ -1,18 +1,17 @@
 <template>
   <div class="timer" v-bind:class="{disable: isNotStart}">
     <div class="currentTime">
-      {{this.currentHour !== 0 ? this.currentHour + ':' : '' }}{{(this.currentHour === 0 && this.currentMin === 0) ? '' : this.currentMin + ':' }}{{currentSec}}
+      {{
+        this.currentHour !== 0 ? this.currentHour + ':' : ''
+      }}{{ (this.currentHour === 0 && this.currentMin === 0) ? '' : this.currentMin + ':' }}{{ currentSec }}
     </div>
     <hr class="line">
     <div class="buttons">
-      <button v-if="isNotStart" @click="startTimer">
-        пуск
+      <button class="startBtn" v-if="isNotStart" @click="startTimer">
       </button>
-      <button v-else @click="pauseTimer">
-        пауза
+      <button class="pauseBtn" v-else @click="pauseTimer">
       </button>
-      <button @click="stopTimer">
-        стоп
+      <button class="stopBtn" @click="stopTimer">
       </button>
     </div>
   </div>
@@ -66,11 +65,9 @@ export default {
 
 <style scoped>
 .timer {
-  max-width: 100%;
+  margin: 0 auto;
+  width: 225px;
   background-color: #9E9E9E;
-}
-
-.line {
 }
 
 .currentTime {
@@ -91,23 +88,54 @@ export default {
 }
 
 .buttons button {
-  padding: 10px;
   font-size: 14px;
-  border: 1px solid black;
   cursor: pointer;
   background-color: #9E9E9E;
+  border: none;
+}
+
+.buttons button img {
+  width: 20px;
+  height: 20px;
 }
 
 .buttons button:not(:last-child) {
   margin-right: 48px;
 }
 
-.buttons button:hover {
-  background-color: #353638;
-  color: white;
-}
-
 .disable {
   opacity: 0.6;
+}
+
+.startBtn {
+  width: 20px;
+  height: 20px;
+  background: url("./../../public/start.svg") no-repeat;
+}
+
+.pauseBtn {
+  width: 20px;
+  height: 20px;
+  background: url("./../../public/pause.svg") no-repeat;
+}
+
+.stopBtn {
+  width: 20px;
+  height: 20px;
+  background: url("./../../public/stop.png") no-repeat;
+}
+
+@media (max-width: 1024px) {
+  .timer {
+    margin: 0 auto;
+    width: 280px;
+    background-color: #9E9E9E;
+  }
+}
+
+@media (max-width: 768px) {
+  .timer {
+    width: 320px;
+  }
 }
 </style>

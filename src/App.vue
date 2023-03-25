@@ -16,8 +16,7 @@ export default {
   },
   components: {Board},
   data() {
-    return {
-    }
+    return {}
   },
 }
 </script>
